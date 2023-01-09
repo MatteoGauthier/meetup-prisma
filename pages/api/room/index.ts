@@ -1,28 +1,28 @@
-import { nanoid } from "nanoid"
 import type { NextApiRequest, NextApiResponse } from "next"
-import { mockedData } from "../../../lib/mocked-data"
-import { Room } from "../../../types"
 
-import { shake } from "radash"
-import { cleanObject } from "../../../lib/utils"
+import { prisma } from "../../../lib/db"
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-  const { name, surface, color, description, isAvailable, building } = req.body
+  const body = req.body
 
   switch (req.method) {
     case "GET":
-      const result: Room[] = mockedData.rooms
+      const result = await prisma.room.findMany()
       return res.json(result)
 
     case "POST":
-      const newPost: Room = cleanObject({
-        id: nanoid(),
-        isAvailable,
-        name,
-        surface,
-        color,
-        description,
-        building,
+      const newPost = prisma.room.create({
+        data: {
+          name: body.name,
+          description: body.description,
+          surface: body.surface,
+          color: body.color,
+          building: {
+            connect: {
+              id: body.buildingId,
+            },
+          },
+        },
       })
 
       console.log("POST /api/room", newPost)

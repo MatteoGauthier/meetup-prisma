@@ -1,27 +1,31 @@
-import { nanoid } from "nanoid"
 import type { NextApiRequest, NextApiResponse } from "next"
-import { mockedData } from "../../../lib/mocked-data"
-import { cleanObject } from "../../../lib/utils"
-import { Room } from "../../../types"
+import { prisma } from "../../../lib/db"
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-  const { name, surface, isAvailable, color, description, building } = req.body
+  const body = req.body
   const roomId = req.query.id
 
   switch (req.method) {
     case "GET":
-      const result: Room = mockedData.rooms[0]
+      const result = await prisma.room.findUnique({
+        where: {
+          id: roomId as string,
+        },
+      })
       return res.json(result)
 
     case "PUT":
-      const updatedRoom: Room = cleanObject({
-        id: roomId as string,
-        isAvailable,
-        name,
-        surface,
-        color,
-        description,
-        building,
+      const updatedRoom = await prisma.room.update({
+        where: {
+          id: roomId as string,
+        },
+        data: {
+          description: body.description,
+          name: body.name,
+          surface: body.surface,
+          color: body.color,
+          building: body.buildingId,
+        },
       })
 
       console.log(`PUT /api/room/${roomId}`, updatedRoom)

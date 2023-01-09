@@ -21,11 +21,11 @@ export const createRoom = async ({
   surface,
   color,
   description,
-  building,
+  buildingId,
 }: {
   name: string
   surface: number
-  building: string
+  buildingId: string
   description?: string
   color?: string
 }) => {
@@ -39,7 +39,7 @@ export const createRoom = async ({
       surface,
       color,
       description,
-      building,
+      buildingId,
     }),
   })
 

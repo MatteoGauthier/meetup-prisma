@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid"
 import type { NextApiRequest, NextApiResponse } from "next"
+import { prisma } from "../../../lib/db"
 import { mockedData } from "../../../lib/mocked-data"
 import { Building } from "../../../types"
 
@@ -8,14 +9,15 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
   switch (req.method) {
     case "GET":
-      const result: Building[] = mockedData.buildings
+      const result = prisma.building.findMany()
       return res.json(result)
 
     case "POST":
-      const newPost: Building = {
-        id: nanoid(),
-        name,
-      }
+      const newPost = await prisma.building.create({
+        data: {
+          name: name,
+        },
+      })
 
       return res.json(newPost)
 

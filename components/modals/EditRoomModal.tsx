@@ -10,6 +10,7 @@ import { Room } from "../../types"
 const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: string } & Room>) => {
   const handleSubmit = useCallback(async () => {
     const result = await fetch(`/api/room/${innerProps.roomId}`, {})
+    // buildingId
 
     if (result.ok) {
       toast.success("Salle modifiée avec succès")

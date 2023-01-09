@@ -15,7 +15,7 @@ export default function CreateRoom({}: Props) {
     const room: Parameters<typeof createRoom>[0] = {
       name: data.get("name") as string,
       description: data.get("description") as string,
-      building: data.get("building") as string,
+      buildingId: data.get("building") as string,
       surface: Number(data.get("surface")),
       color: data.get("color") as string,
     }
@@ -45,7 +45,7 @@ export default function CreateRoom({}: Props) {
           <Select
             label="Dans quel bâtiment se trouve la salle ?"
             placeholder="Darwin"
-            data={buildings?.map((building) => ({ label: building.name, value: building.name })) || []}
+            data={buildings?.map((building) => ({ label: building.name, value: building.id })) || []}
           />
           <TextInput
             label="Description"
