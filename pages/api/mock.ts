@@ -3,9 +3,9 @@ import type { NextApiRequest, NextApiResponse } from "next"
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     switch (req.query.type) {
-      case "posts":
+      case "rooms":
         return res.json({
-          message: "Added 5 new fake posts",
+          message: "Added 5 new fake rooms",
         })
 
       case "authors":

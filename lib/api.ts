@@ -21,9 +21,11 @@ export const createRoom = async ({
   surface,
   color,
   description,
+  building,
 }: {
   name: string
   surface: number
+  building: string
   description?: string
   color?: string
 }) => {
@@ -37,6 +39,7 @@ export const createRoom = async ({
       surface,
       color,
       description,
+      building,
     }),
   })
 

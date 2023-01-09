@@ -18,6 +18,7 @@ specifiers:
   nanoid: ^4.0.0
   next: 13.1.1
   prisma: ^4.8.1
+  radash: ^10.6.0
   react: 18.2.0
   react-dom: 18.2.0
   react-hot-toast: ^2.4.0
@@ -41,6 +42,7 @@ dependencies:
   eslint-config-next: 13.1.1_iukboom6ndih5an6iafl45j2fe
   nanoid: 4.0.0
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
+  radash: 10.6.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
@@ -2712,6 +2714,11 @@ packages:
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+    dev: false
+
+  /radash/10.6.0:
+    resolution: {integrity: sha512-L0PD+kBVaPGxn0UO9yVLJUKUkuu7bLqroZbieecPUGuSEtByCtMedDSyw+arA8pnLtZduYTgHnMjRfN90gozpQ==}
+    engines: {node: '>=14.18.0'}
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:

@@ -24,6 +24,7 @@
     "eslint-config-next": "13.1.1",
     "nanoid": "^4.0.0",
     "next": "13.1.1",
+    "radash": "^10.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",

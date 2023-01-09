@@ -55,15 +55,17 @@ export default function RoomViz({}: Props) {
             <Card key={room.id} shadow="sm" p="sm" radius="md" withBorder>
               <Card.Section>
                 <Image src={"https://source.unsplash.com/weekly?" + room.id} height={110} alt="Norway" />
-                <Badge
-                  sx={{ position: "absolute", top: 8, right: 6 }}
-                  radius={"md"}
-                  variant="filled"
-                  color={"dark"}
-                  size={"md"}
-                >
-                  Bat A
-                </Badge>
+                {room.building && (
+                  <Badge
+                    sx={{ position: "absolute", top: 8, right: 6 }}
+                    radius={"md"}
+                    variant="filled"
+                    color={"dark"}
+                    size={"md"}
+                  >
+                    {room.building}
+                  </Badge>
+                )}
               </Card.Section>
 
               <Group position="apart" mt="sm" mb="xs">
