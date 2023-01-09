@@ -56,7 +56,7 @@ export default function RoomViz({}: Props) {
             <Card key={room.id} shadow="sm" p="sm" radius="md" withBorder>
               <Card.Section>
                 <Image
-                  src={"https://source.unsplash.com/weekly?" + room.id.substring(0, 10)}
+                  src={"https://source.unsplash.com/weekly?" + room.name.substring(0, 10)}
                   height={110}
                   alt="Norway"
                 />
