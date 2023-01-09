@@ -1,11 +1,14 @@
-export type Post = {
-  id: string
-  title: string
-  author: string
+export type Room = {
+  id: string | number
+  surface: number
+  isAvailable: boolean
+  name: string
+  description?: string
   color?: string
+  building: string
 }
 
-export type Author = {
+export type Building = {
   id: string
   name: string
 }

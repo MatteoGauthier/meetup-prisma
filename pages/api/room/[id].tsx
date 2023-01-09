@@ -1,27 +1,26 @@
 import { nanoid } from "nanoid"
 import type { NextApiRequest, NextApiResponse } from "next"
-import { Post } from "../../../types"
+import { mockedData } from "../../../lib/mocked-data"
+import { Room } from "../../../types"
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-  const { title, author, color } = req.body
+  const { name, surface, isAvailable, color, description, building } = req.body
   const postId = req.query.id
 
   switch (req.method) {
     case "GET":
-      const result: Post = {
-        id: "A1PWaDZ08Pkxr4OpINAAM",
-        title: "How to use OneSignal on a React Native app",
-        author: "OneSignal",
-        color: "#e1d2ff",
-      }
+      const result: Room = mockedData.rooms[0]
       return res.json(result)
 
     case "PUT":
-      const updatedPost: Post = {
+      const updatedPost: Room = {
         id: postId as string,
-        title,
-        author,
+        isAvailable,
+        name,
+        surface,
         color,
+        description,
+        building,
       }
 
       return res.json(updatedPost)
