@@ -1,8 +1,5 @@
-import { nanoid } from "nanoid"
-import type { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest, NextApiResponse } from "next" 
 import { prisma } from "../../../lib/db"
-import { mockedData } from "../../../lib/mocked-data"
-import { Building } from "../../../types"
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { name } = req.body

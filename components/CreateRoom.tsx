@@ -26,7 +26,7 @@ export default function CreateRoom({}: Props) {
       try {
         createRoom(room)
         toast.success("Le bâtiment a bien été créé")
-        mutate("/api/rooms")
+        mutate("/api/room")
       } catch (error) {
         toast.error(error as string)
       }
@@ -53,6 +53,7 @@ export default function CreateRoom({}: Props) {
             label="Dans quel bâtiment se trouve la salle ?"
             placeholder="Darwin"
             name={"building"}
+            required
             data={buildings?.map((building) => ({ label: building.name, value: building.id })) || []}
           />
           <TextInput
