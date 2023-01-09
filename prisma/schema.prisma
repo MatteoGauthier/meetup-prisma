@@ -9,3 +9,16 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Room {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  name        String
+  description String?
+  surface     Int
+  isAvailable Boolean @default(true)
+  color       String?
+  building    String
+}
