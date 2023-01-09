@@ -18,7 +18,19 @@ model Room {
   name        String
   description String?
   surface     Int
-  isAvailable Boolean @default(true)
+  isAvailable Boolean   @default(true)
   color       String?
-  building    String
+
+  building    Building? @relation(fields: [buildingId], references: [id])
+  buildingId  String?
+}
+
+model Building {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  name  String
+  
+  rooms Room[]
 }
