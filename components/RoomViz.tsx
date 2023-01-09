@@ -12,7 +12,6 @@ export default function RoomViz({}: Props) {
   const [showOnlyAvailable, setShowOnlyAvailable] = useState<boolean>(false)
   const { rooms } = useRooms()
   const { buildings } = useBuildings()
-  console.log('🚀 ~ file: RoomViz.tsx:15 ~ buildings', buildings)
 
   const buildingsFilter = useMemo(() => {
     const list = buildings?.map((building) => ({ label: building.name, value: building.name })) || []
