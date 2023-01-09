@@ -58,12 +58,14 @@ export const updateRoom = async (
     color,
     description,
     buildingId,
+    isAvailable,
   }: {
     name: string
     surface: number
     buildingId: string
     description?: string
     color?: string
+    isAvailable?: boolean
   }
 ) => {
   const result = await fetch(`/api/room/${roomId}`, {
@@ -77,9 +79,9 @@ export const updateRoom = async (
       color,
       description,
       buildingId,
+      isAvailable,
     }),
   })
-  console.log(result)
 
   if (result.ok) {
     return result.json()

@@ -25,6 +25,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           name: body.name,
           surface: body.surface,
           color: body.color,
+          isAvailable: body.isAvailable,
           building: {
             connect: {
               id: body.buildingId,
