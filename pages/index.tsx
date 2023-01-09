@@ -2,7 +2,10 @@ import Head from "next/head"
 import Image from "next/image"
 import { Inter } from "@next/font/google"
 import styles from "../styles/Home.module.css"
-import List from "../components/List"
+import Create from "../components/Create"
+import PostList from "../components/post/PostList"
+import AuthorList from "../components/author/AuthorList"
+import RoomViz from "../components/RoomViz"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,7 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={"max-w-screen-xl mx-auto"}>
-        <List items={} />
+        <RoomViz />
       </main>
     </>
   )

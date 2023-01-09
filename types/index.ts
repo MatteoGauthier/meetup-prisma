@@ -4,3 +4,8 @@ export type Post = {
   author: string
   color?: string
 }
+
+export type Author = {
+  id: string
+  name: string
+}
