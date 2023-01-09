@@ -23,7 +23,6 @@ const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: 
         color: data.get("color") as string,
         isAvailable: (data.get("isAvailable") as string) === "open",
       }
-      console.log('🚀 ~ file: EditRoomModal.tsx:26 ~ room', room)
 
       try {
         await updateRoom(innerProps.id, cleanObject(room))
