@@ -1,12 +1,9 @@
 import { Badge, Button, Card, Group, Image, Paper, Select, SimpleGrid, Switch, Text, Title } from "@mantine/core"
 import { openContextModal } from "@mantine/modals"
 import { useCallback, useMemo, useState } from "react"
-import useSWR from "swr"
 import useBuildings from "../hooks/useBuildings"
 import useRooms from "../hooks/useRooms"
-import fetcher from "../lib/fetcher"
 import { colorFromString } from "../lib/utils"
-import { Building, Room } from "../types"
 
 type Props = {}
 
@@ -15,6 +12,7 @@ export default function RoomViz({}: Props) {
   const [showOnlyAvailable, setShowOnlyAvailable] = useState<boolean>(false)
   const { rooms } = useRooms()
   const { buildings } = useBuildings()
+  console.log('🚀 ~ file: RoomViz.tsx:15 ~ buildings', buildings)
 
   const buildingsFilter = useMemo(() => {
     const list = buildings?.map((building) => ({ label: building.name, value: building.name })) || []

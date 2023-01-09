@@ -9,7 +9,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
   switch (req.method) {
     case "GET":
-      const result = prisma.building.findMany()
+      const result = await prisma.building.findMany()
       return res.json(result)
 
     case "POST":
