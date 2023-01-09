@@ -11,7 +11,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       return res.json(result)
 
     case "POST":
-      const newPost = prisma.room.create({
+      const newPost = await prisma.room.create({
         data: {
           name: body.name,
           description: body.description,

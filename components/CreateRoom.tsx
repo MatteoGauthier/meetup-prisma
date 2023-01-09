@@ -45,6 +45,7 @@ export default function CreateRoom({}: Props) {
           <Select
             label="Dans quel bâtiment se trouve la salle ?"
             placeholder="Darwin"
+            name={"building"}
             data={buildings?.map((building) => ({ label: building.name, value: building.id })) || []}
           />
           <TextInput
@@ -53,7 +54,6 @@ export default function CreateRoom({}: Props) {
             placeholder="Parfait pour le travail en groupe"
             type={"text"}
           />
-          <TextInput label="Bâtiment" name={"building"} placeholder="Parfait pour le travail en groupe" type={"text"} />
           <ColorInput label="Couleur" name={"color"} autoComplete="off" placeholder="#FFFFFF" />
           <Button variant="gradient" type={"submit"} gradient={{ from: "teal", to: "lime", deg: 105 }}>
             Créer la salle
