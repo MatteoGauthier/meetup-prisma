@@ -6,6 +6,7 @@ import { useSWRConfig } from "swr"
 import useBuildings from "../hooks/useBuildings"
 import useRooms from "../hooks/useRooms"
 import { createRoom } from "../lib/api"
+import BuildingSelect from "./BuildingSelect"
 type Props = {}
 
 export default function CreateRoom({}: Props) {
@@ -13,7 +14,7 @@ export default function CreateRoom({}: Props) {
   const { mutate } = useSWRConfig()
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const data = new FormData(e.currentTarget)
       const room: Parameters<typeof createRoom>[0] = {
@@ -24,7 +25,7 @@ export default function CreateRoom({}: Props) {
         color: data.get("color") as string,
       }
       try {
-        createRoom(room)
+        await createRoom(room)
         toast.success("Le bâtiment a bien été créé")
         mutate("/api/room")
       } catch (error) {
@@ -47,15 +48,10 @@ export default function CreateRoom({}: Props) {
             name={"surface"}
             label="Superficie (m2)"
             withAsterisk
+            required
             icon={<IconRuler size={18} />}
           />
-          <Select
-            label="Dans quel bâtiment se trouve la salle ?"
-            placeholder="Darwin"
-            name={"building"}
-            required
-            data={buildings?.map((building) => ({ label: building.name, value: building.id })) || []}
-          />
+          <BuildingSelect name="building" />
           <TextInput
             label="Description"
             name={"description"}

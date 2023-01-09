@@ -10,14 +10,14 @@ export default function CreateBuilding({}: Props) {
   const { mutate } = useSWRConfig()
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const data = new FormData(e.currentTarget)
       const building = {
         name: data.get("name") as string,
       }
       try {
-        createBuilding(building)
+        await createBuilding(building)
         mutate("/api/building")
         toast.success("Le bâtiment a bien été créé")
       } catch (error) {

@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next" 
+import type { NextApiRequest, NextApiResponse } from "next"
 import { prisma } from "../../../lib/db"
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
@@ -19,7 +19,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       return res.json(newPost)
 
     default:
-      return res.json({
+      return res.status(401).json({
         error: "Method not allowed",
       })
   }

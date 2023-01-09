@@ -14,7 +14,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       })
       return res.json(result)
 
-    case "PUT":
+    case "PATCH":
+      console.log(body)
       const updatedRoom = await prisma.room.update({
         where: {
           id: roomId as string,
@@ -24,11 +25,15 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           name: body.name,
           surface: body.surface,
           color: body.color,
-          building: body.buildingId,
+          building: {
+            connect: {
+              id: body.buildingId,
+            },
+          },
         },
       })
 
-      console.log(`PUT /api/room/${roomId}`, updatedRoom)
+      console.log(`PATCH /api/room/${roomId}`, updatedRoom)
 
       return res.json(updatedRoom)
 
@@ -38,7 +43,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       })
 
     default:
-      return res.json({
+      return res.status(401).json({
         error: "Method not allowed",
       })
   }

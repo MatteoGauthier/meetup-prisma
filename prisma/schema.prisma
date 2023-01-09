@@ -21,8 +21,8 @@ model Room {
   isAvailable Boolean   @default(true)
   color       String?
 
-  building    Building? @relation(fields: [buildingId], references: [id])
-  buildingId  String?
+  building    Building @relation(fields: [buildingId], references: [id])
+  buildingId  String
 }
 
 model Building {
