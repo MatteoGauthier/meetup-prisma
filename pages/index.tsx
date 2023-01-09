@@ -1,6 +1,7 @@
-import { AppShell, Container, Group, SimpleGrid, Space } from "@mantine/core"
+import { AppShell, Container, Group, SimpleGrid, Space, Stack } from "@mantine/core"
 import { Inter } from "@next/font/google"
 import Head from "next/head"
+import BuildingList from "../components/BuildingList"
 import CreateBuilding from "../components/CreateBuilding"
 import CreateRoom from "../components/CreateRoom"
 import RoomViz from "../components/RoomViz"
@@ -27,7 +28,10 @@ export default function Home() {
           <Space h="md" />
           <SimpleGrid sx={{ alignItems: "start" }} cols={2}>
             <CreateRoom />
-            <CreateBuilding />
+            <Stack>
+              <CreateBuilding />
+              <BuildingList />
+            </Stack>
           </SimpleGrid>
         </Container>
       </AppShell>

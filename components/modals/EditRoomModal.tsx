@@ -1,10 +1,11 @@
-import { ContextModalProps, ModalsProvider } from "@mantine/modals"
+import { ContextModalProps } from "@mantine/modals"
 
 import { Button, ColorInput, NumberInput, Radio, Stack, Text, TextInput } from "@mantine/core"
 import { IconRuler } from "@tabler/icons"
-import { Room } from "../RoomViz"
 import { useCallback } from "react"
 import { toast } from "react-hot-toast"
+import useRoom from "../../hooks/useRoom"
+import { Room } from "../../types"
 
 const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: string } & Room>) => {
   const handleSubmit = useCallback(async () => {

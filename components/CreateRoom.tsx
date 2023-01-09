@@ -1,22 +1,13 @@
-import {
-  Button,
-  ColorInput, NumberInput,
-  Paper,
-  Select,
-  Stack, TextInput,
-  Title
-} from "@mantine/core"
+import { Button, ColorInput, NumberInput, Paper, Select, Stack, TextInput, Title } from "@mantine/core"
 import { IconRuler } from "@tabler/icons"
 import { useCallback } from "react"
 import { toast } from "react-hot-toast"
-import useSWR from "swr"
+import useBuildings from "../hooks/useBuildings"
 import { createRoom } from "../lib/api"
-import fetcher from "../lib/fetcher"
-import { Building } from "../types"
 type Props = {}
 
 export default function CreateRoom({}: Props) {
-  const { data: buildings } = useSWR<Building[]>("/api/building", fetcher)
+  const { buildings } = useBuildings()
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
