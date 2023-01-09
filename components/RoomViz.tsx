@@ -1,6 +1,19 @@
 import React from "react"
 import clsx from "clsx"
-import { Badge, Button, Card, Group, Image, Paper, SimpleGrid, Text, Title } from "@mantine/core"
+import {
+  Badge,
+  Button,
+  Card,
+  Chip,
+  Group,
+  Image,
+  Paper,
+  SegmentedControl,
+  SimpleGrid,
+  Switch,
+  Text,
+  Title,
+} from "@mantine/core"
 type Props = {}
 
 type Room = {
@@ -82,9 +95,21 @@ const rooms: Room[] = [
 export default function RoomViz({}: Props) {
   return (
     <Paper shadow="xs" p="md">
-      <Title mb={"md"} order={2}>
-        Visualisation des salles de réunions
-      </Title>
+      <Title order={2}>Visualisation des salles de réunions</Title>
+      <hr style={{ opacity: 0.2 }} />
+      <Group mb={"md"} align={"center"} sx={{ justifyContent: "space-between" }}>
+        <SegmentedControl
+          size={"sm"}
+          radius={"md"}
+          data={[
+            { label: "React", value: "react" },
+            { label: "Angular", value: "ng" },
+            { label: "Vue", value: "vue" },
+            { label: "Svelte", value: "svelte" },
+          ]}
+        />
+        <Switch mt={8} label="Afficher uniquement les salles disponibles" />
+      </Group>
       <SimpleGrid
         cols={4}
         spacing="md"
@@ -97,11 +122,16 @@ export default function RoomViz({}: Props) {
         {rooms.map((room) => (
           <Card key={room.id} shadow="sm" p="sm" radius="md" withBorder>
             <Card.Section>
-              <Image
-                src={"https://source.unsplash.com/weekly?" + room.id}
-                height={110}
-                alt="Norway"
-              />
+              <Image src={"https://source.unsplash.com/weekly?" + room.id} height={110} alt="Norway" />
+              <Badge
+                sx={{ position: "absolute", top: 8, right: 6 }}
+                radius={"md"}
+                variant="filled"
+                color={"dark"}
+                size={"md"}
+              >
+                Bat A
+              </Badge>
             </Card.Section>
 
             <Group position="apart" mt="sm" mb="xs">
