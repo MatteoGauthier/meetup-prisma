@@ -17,11 +17,13 @@ import {
 import { openContextModal } from "@mantine/modals"
 type Props = {}
 
-type Room = {
+export type Room = {
   id: string | number
   surface: number
   isAvailable: boolean
   name: string
+  description?: string
+  color?: string
 }
 
 const rooms: Room[] = [
@@ -144,10 +146,9 @@ export default function RoomViz({}: Props) {
               onClick={() =>
                 openContextModal({
                   modal: "edit-room-modal",
-                  title: "Test modal from context",
+                  title: "Modifier la salle de réunion",
                   innerProps: {
-                    roomId:
-                      "This modal was defined in ModalsProvider, you can open it anywhere in you app with useModals hook",
+                    roomId: "ON6hJkjGahNmcAYYcXIl_",
                   },
                 })
               }
