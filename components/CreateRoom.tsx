@@ -1,12 +1,23 @@
-import { Button, ColorInput, ColorPicker, NumberInput, Paper, Stack, Textarea, TextInput, Title } from "@mantine/core"
-import { IconRuler, IconSquare } from "@tabler/icons"
+import {
+  Button,
+  ColorInput, NumberInput,
+  Paper,
+  Select,
+  Stack, TextInput,
+  Title
+} from "@mantine/core"
+import { IconRuler } from "@tabler/icons"
 import { useCallback } from "react"
 import { toast } from "react-hot-toast"
+import useSWR from "swr"
 import { createRoom } from "../lib/api"
-import { Room } from "../types"
+import fetcher from "../lib/fetcher"
+import { Building } from "../types"
 type Props = {}
 
 export default function CreateRoom({}: Props) {
+  const { data: buildings } = useSWR<Building[]>("/api/building", fetcher)
+
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
@@ -39,6 +50,11 @@ export default function CreateRoom({}: Props) {
             label="Superficie (m2)"
             withAsterisk
             icon={<IconRuler size={18} />}
+          />
+          <Select
+            label="Dans quel bâtiment se trouve la salle ?"
+            placeholder="Darwin"
+            data={buildings?.map((building) => ({ label: building.name, value: building.name })) || []}
           />
           <TextInput
             label="Description"
