@@ -14,6 +14,7 @@ import {
   Text,
   Title,
 } from "@mantine/core"
+import { openContextModal } from "@mantine/modals"
 type Props = {}
 
 type Room = {
@@ -98,6 +99,7 @@ export default function RoomViz({}: Props) {
       <Title order={2}>Visualisation des salles de réunions</Title>
       <hr style={{ opacity: 0.2 }} />
       <Group mb={"md"} align={"center"} sx={{ justifyContent: "space-between" }}>
+        <Switch mt={8} label="Afficher uniquement les salles disponibles" />
         <SegmentedControl
           size={"sm"}
           radius={"md"}
@@ -108,7 +110,6 @@ export default function RoomViz({}: Props) {
             { label: "Svelte", value: "svelte" },
           ]}
         />
-        <Switch mt={8} label="Afficher uniquement les salles disponibles" />
       </Group>
       <SimpleGrid
         cols={4}
@@ -139,7 +140,24 @@ export default function RoomViz({}: Props) {
               {room.isAvailable ? <Badge color="green">Disponible</Badge> : <Badge color="red">Indisponible</Badge>}
             </Group>
 
-            <Button variant="light" color="blue" fullWidth p={0} mt="sm" radius="md">
+            <Button
+              onClick={() =>
+                openContextModal({
+                  modal: "edit-room-modal",
+                  title: "Test modal from context",
+                  innerProps: {
+                    roomId:
+                      "This modal was defined in ModalsProvider, you can open it anywhere in you app with useModals hook",
+                  },
+                })
+              }
+              variant="light"
+              color="blue"
+              fullWidth
+              p={0}
+              mt="sm"
+              radius="md"
+            >
               Changer la disponibilité
             </Button>
           </Card>
