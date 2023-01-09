@@ -7,7 +7,11 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
   switch (req.method) {
     case "GET":
-      const result = await prisma.room.findMany()
+      const result = await prisma.room.findMany({
+        include: {
+          building: true,
+        },
+      })
       return res.json(result)
 
     case "POST":

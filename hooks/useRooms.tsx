@@ -1,9 +1,15 @@
+import { Prisma, Room } from "@prisma/client"
 import useSWR from "swr"
 import fetcher from "../lib/fetcher"
-import { Room } from "../types"
 
 export default function useRooms() {
-  const { data, error, isLoading } = useSWR<Room[]>(`/api/room`, fetcher)
+  const { data, error, isLoading } = useSWR<
+    Prisma.RoomGetPayload<{
+      include: {
+        building: true
+      }
+    }>[]
+  >(`/api/room`, fetcher)
 
   return {
     rooms: data,

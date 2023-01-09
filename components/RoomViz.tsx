@@ -14,7 +14,7 @@ export default function RoomViz({}: Props) {
   const { buildings } = useBuildings()
 
   const buildingsFilter = useMemo(() => {
-    const list = buildings?.map((building) => ({ label: building.name, value: building.name })) || []
+    const list = buildings?.map((building) => ({ label: building.name, value: building.id })) || []
     return [{ label: "Tout les bâtiments", value: "all" }, ...list]
   }, [buildings])
 
@@ -22,11 +22,13 @@ export default function RoomViz({}: Props) {
     () =>
       rooms
         ?.filter((r) => (showOnlyAvailable ? r.isAvailable : r))
-        .filter((r) => (filter == "all" ? r : r.building === filter)),
+        .filter((r) => (filter == "all" ? r : r.buildingId === filter)),
     [filter, rooms, showOnlyAvailable]
   )
 
   const getColor = useCallback((e: string) => colorFromString(e), [])
+
+  console.log(rooms)
 
   return (
     <Paper shadow="xs" p="md">
@@ -53,15 +55,19 @@ export default function RoomViz({}: Props) {
           filteredRooms.map((room) => (
             <Card key={room.id} shadow="sm" p="sm" radius="md" withBorder>
               <Card.Section>
-                <Image src={"https://source.unsplash.com/weekly?" + room.id} height={110} alt="Norway" />
-                {room.building && (
+                <Image
+                  src={"https://source.unsplash.com/weekly?" + room.id.substring(0, 10)}
+                  height={110}
+                  alt="Norway"
+                />
+                {room?.building?.name && (
                   <Badge
-                    sx={{ position: "absolute", top: 8, right: 6, backgroundColor: getColor(room.building) }}
+                    sx={{ position: "absolute", top: 8, right: 6, backgroundColor: getColor(room.building.name) }}
                     radius={"md"}
                     variant="filled"
                     size={"md"}
                   >
-                    {room.building}
+                    {room.building.name}
                   </Badge>
                 )}
               </Card.Section>
