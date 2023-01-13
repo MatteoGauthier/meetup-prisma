@@ -15,7 +15,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       return res.json(result)
 
     case "PATCH":
-      console.log(body)
       const updatedRoom = await prisma.room.update({
         where: {
           id: roomId as string,

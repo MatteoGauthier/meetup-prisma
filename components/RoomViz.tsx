@@ -28,8 +28,6 @@ export default function RoomViz({}: Props) {
 
   const getColor = useCallback((e: string) => colorFromString(e), [])
 
-  console.log(rooms)
-
   return (
     <Paper shadow="xs" p="md">
       <Title order={2}>Visualisation des salles de réunions</Title>
