@@ -5,14 +5,14 @@ import { createBuilding } from "../lib/api"
 type Props = {}
 
 export default function CreateBuilding({}: Props) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
     const building = {
       name: data.get("name") as string,
     }
     try {
-      createBuilding(building)
+      await createBuilding(building)
       toast.success("Le bâtiment a bien été créé")
     } catch (error) {
       toast.error(error as string)

@@ -9,18 +9,18 @@ type Props = {}
 export default function CreateRoom({}: Props) {
   const { buildings } = useBuildings()
 
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
     const room: Parameters<typeof createRoom>[0] = {
       name: data.get("name") as string,
       description: data.get("description") as string,
-      building: data.get("building") as string,
+      buildingId: data.get("building") as string,
       surface: Number(data.get("surface")),
       color: data.get("color") as string,
     }
     try {
-      createRoom(room)
+      await createRoom(room)
       toast.success("Le bâtiment a bien été créé")
     } catch (error) {
       toast.error(error as string)

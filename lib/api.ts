@@ -21,11 +21,11 @@ export const createRoom = async ({
   surface,
   color,
   description,
-  building,
+  buildingId,
 }: {
   name: string
   surface: number
-  building: string
+  buildingId: string
   description?: string
   color?: string
 }) => {
@@ -39,7 +39,47 @@ export const createRoom = async ({
       surface,
       color,
       description,
-      building,
+      buildingId,
+    }),
+  })
+
+  if (result.ok) {
+    return result.json()
+  } else {
+    throw new Error("Error while creating room")
+  }
+}
+
+export const updateRoom = async (
+  roomId: string,
+  {
+    name,
+    surface,
+    color,
+    description,
+    buildingId,
+    isAvailable,
+  }: {
+    name: string
+    surface: number
+    buildingId: string
+    description?: string
+    color?: string
+    isAvailable?: boolean
+  }
+) => {
+  const result = await fetch(`/api/room/${roomId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      surface,
+      color,
+      description,
+      buildingId,
+      isAvailable,
     }),
   })
 

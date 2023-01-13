@@ -1,5 +1,5 @@
 export type Room = {
-  id: string | number
+  id: string
   surface: number
   isAvailable: boolean
   name: string

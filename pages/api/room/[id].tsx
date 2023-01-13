@@ -13,7 +13,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       const result: Room = mockedData.rooms[0]
       return res.json(result)
 
-    case "PUT":
+    case "PATCH":
       const updatedRoom: Room = cleanObject({
         id: roomId as string,
         isAvailable,
@@ -24,7 +24,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         building,
       })
 
-      console.log(`PUT /api/room/${roomId}`, updatedRoom)
+      console.log(`PATCH /api/room/${roomId}`, updatedRoom)
 
       return res.json(updatedRoom)
 
@@ -34,7 +34,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       })
 
     default:
-      return res.json({
+      return res.status(401).json({
         error: "Method not allowed",
       })
   }
