@@ -4,6 +4,7 @@ import { useCallback } from "react"
 import { toast } from "react-hot-toast"
 import useBuildings from "../hooks/useBuildings"
 import { createRoom } from "../lib/api"
+import BuildingSelect from "./BuildingSelect"
 type Props = {}
 
 export default function CreateRoom({}: Props) {
@@ -40,20 +41,16 @@ export default function CreateRoom({}: Props) {
             name={"surface"}
             label="Superficie (m2)"
             withAsterisk
+            required
             icon={<IconRuler size={18} />}
           />
-          <Select
-            label="Dans quel bâtiment se trouve la salle ?"
-            placeholder="Darwin"
-            data={buildings?.map((building) => ({ label: building.name, value: building.name })) || []}
-          />
+          <BuildingSelect name="building" />
           <TextInput
             label="Description"
             name={"description"}
             placeholder="Parfait pour le travail en groupe"
             type={"text"}
           />
-          <TextInput label="Bâtiment" name={"building"} placeholder="Parfait pour le travail en groupe" type={"text"} />
           <ColorInput label="Couleur" name={"color"} autoComplete="off" placeholder="#FFFFFF" />
           <Button variant="gradient" type={"submit"} gradient={{ from: "teal", to: "lime", deg: 105 }}>
             Créer la salle
