@@ -10,7 +10,6 @@ import BuildingSelect from "./BuildingSelect"
 type Props = {}
 
 export default function CreateRoom({}: Props) {
-  const { buildings } = useBuildings()
   const { mutate } = useSWRConfig()
 
   const handleSubmit = useCallback(

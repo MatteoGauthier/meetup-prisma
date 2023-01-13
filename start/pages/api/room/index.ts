@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import { mockedData } from "../../../lib/mocked-data"
 import { Room } from "../../../types"
 
-import { shake } from "radash"
 import { cleanObject } from "../../../lib/utils"
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {

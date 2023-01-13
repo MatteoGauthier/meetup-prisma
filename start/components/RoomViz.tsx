@@ -81,6 +81,7 @@ export default function RoomViz({}: Props) {
                     title: "Modifier la salle de réunion",
                     innerProps: {
                       roomId: "ON6hJkjGahNmcAYYcXIl_",
+                      ...room,
                     },
                   })
                 }

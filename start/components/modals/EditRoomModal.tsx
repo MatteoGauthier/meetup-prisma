@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast"
 import { updateRoom } from "../../lib/api"
 import { cleanObject } from "../../lib/utils"
 import { Room } from "../../types"
+import BuildingSelect from "../BuildingSelect"
 
 const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: string } & Room>) => {
   const handleSubmit = useCallback(
@@ -33,6 +34,7 @@ const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: 
     },
     [context, id, innerProps.id]
   )
+
   return (
     <form onSubmit={handleSubmit}>
       <Stack>
@@ -46,22 +48,31 @@ const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: 
           required
         />
         <NumberInput
+          name="surface"
           placeholder="14m2"
           defaultValue={innerProps.surface}
           label="Superficie (m2)"
           withAsterisk
           icon={<IconRuler size={18} />}
         />
+        <BuildingSelect defaultValue={innerProps.building} name="building" />
         <TextInput
+          name="description"
           label="Description"
-          defaultValue={innerProps.description}
+          defaultValue={innerProps.description || undefined}
           placeholder="Parfait pour le travail en groupe"
           type={"text"}
         />
-        <ColorInput label="Couleur" defaultValue={innerProps.color || ""} autoComplete="off" placeholder="#FFFFFF" />
+        <ColorInput
+          name="color"
+          label="Couleur"
+          defaultValue={innerProps.color || ""}
+          autoComplete="off"
+          placeholder="#FFFFFF"
+        />
         <Radio.Group
-          name="favoriteFramework"
-          label="Select your favorite framework/library"
+          name="isAvailable"
+          label="Occupation"
           description="This is anonymous"
           withAsterisk
           defaultValue={innerProps.isAvailable ? "open" : "closed"}

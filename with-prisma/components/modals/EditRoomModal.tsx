@@ -1,14 +1,14 @@
 import { ContextModalProps } from "@mantine/modals"
 
 import { Button, ColorInput, NumberInput, Radio, Stack, Text, TextInput } from "@mantine/core"
+import { Room } from "@prisma/client"
 import { IconRuler } from "@tabler/icons"
 import { useCallback } from "react"
 import { toast } from "react-hot-toast"
-import { Room } from "@prisma/client"
-import { updateRoom } from "../../lib/api"
 import { mutate } from "swr"
-import BuildingSelect from "../BuildingSelect"
+import { updateRoom } from "../../lib/api"
 import { cleanObject } from "../../lib/utils"
+import BuildingSelect from "../BuildingSelect"
 
 const EditRoomModal = ({ context, id, innerProps }: ContextModalProps<{ roomId: string } & Room>) => {
   const handleSubmit = useCallback(

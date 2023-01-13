@@ -1,8 +1,5 @@
 import { Group, Paper, Stack, Text, Title } from "@mantine/core"
-import React from "react"
 import useBuildings from "../hooks/useBuildings"
-import fetcher from "../lib/fetcher"
-import { Building } from "../types"
 
 type Props = {}
 
