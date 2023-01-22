@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Mickael Jackson",
+    "posts": [
+      {
+        "id": 1,
+        "title": "How to cook a pizza",
+        "content": "First, you need to buy a pizza",
+        "authorId": 1
+      }
+    ]
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+

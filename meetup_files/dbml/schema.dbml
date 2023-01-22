@@ -1,0 +1,19 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id Int [pk, increment]
+  name String [not null]
+  posts Post [not null]
+}
+
+Table Post {
+  id Int [pk, increment]
+  title String [not null]
+  content String
+  author User [not null]
+  authorId Int [not null]
+}
+
+Ref: Post.authorId > User.id
