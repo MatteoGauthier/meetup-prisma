@@ -7,27 +7,14 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
 model Restaurant {
-  id        String   @id @default(cuid())
+  id String @id @default(uuid())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  name        String
-  description String
-  seats       Int?
-  likes       Int    @default(0) 
-
-  category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId String?
-}
-
-model Category {
-  id String @id @default(cuid())
 
   name String
-
-  restaurants Restaurant[]
+  description String
+  seats Int?
 }
