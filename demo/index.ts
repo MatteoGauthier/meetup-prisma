@@ -6,21 +6,28 @@ import { Prisma, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
-const newRestaurant = await prisma.restaurant.create({
+const newCategory = await prisma.category.create({
   data: {
-    name: "Le petit bouchon",
-    description: "Un petit bouchon à la campagne",
-    likes: 12,
-    seats: 20,
+    name: "Italian food ",
   },
 })
 
-const newCategoryObject: Prisma.CategoryCreateInput = {
-  name: "Cuisine Italienne",
-}
-
-const newCategory = await prisma.category.create({
-  data: newCategoryObject,
+const newRestaurant = await prisma.restaurant.create({
+  data: {
+    name: "Murano",
+    description: "Hey",
+    category: {
+      connect: {
+        id: newCategory.id,
+      },
+    },
+  },
 })
+
+const restaurantFakeBody: Prisma.RestaurantCreateInput = {
+  name: "Restaurant 1",
+  description: "example",
+  category: {},
+}
 
 console.log(newRestaurant)
